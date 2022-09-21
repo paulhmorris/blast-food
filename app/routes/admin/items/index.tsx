@@ -55,35 +55,39 @@ export default function NewItem() {
       <div>
         <label className="text-2xl font-bold">Current Items</label>
         <ul className="flex flex-wrap gap-4 overflow-y-scroll">
-          {items.map((item) => {
-            return (
-              <li
-                key={`item-${item.id}`}
-                className={classNames(
-                  "relative flex basis-48 select-none flex-col justify-between gap-2 rounded border-2 border-slate-800 bg-slate-50 px-2 py-4 font-medium text-slate-800"
-                )}
-              >
-                <section className="mb-4">
-                  <p>{item.name}</p>
-                  <p>{formatCurrency(Number(item.price), 2)}</p>
-                </section>
-                <div className="flex justify-between">
-                  <Link
-                    to={`/admin/items/${item.id}`}
-                    className="rounded bg-emerald-50 px-2 py-1 text-emerald-800 no-underline ring-1 ring-emerald-800 hover:bg-emerald-100"
-                  >
-                    Edit
-                  </Link>
-                  <form action="/admin/items/delete" method="post">
-                    <input type="hidden" name="itemId" value={item.id} />
-                    <button className="rounded bg-red-50 px-2 py-1 text-red-800 ring-1 ring-red-800 hover:bg-red-100">
-                      Delete
-                    </button>
-                  </form>
-                </div>
-              </li>
-            );
-          })}
+          {items.length > 0 ? (
+            items.map((item) => {
+              return (
+                <li
+                  key={`item-${item.id}`}
+                  className={classNames(
+                    "relative flex basis-48 select-none flex-col justify-between gap-2 rounded border-2 border-slate-800 bg-slate-50 px-2 py-4 font-medium text-slate-800"
+                  )}
+                >
+                  <section className="mb-4">
+                    <p>{item.name}</p>
+                    <p>{formatCurrency(Number(item.price), 2)}</p>
+                  </section>
+                  <div className="flex justify-between">
+                    <Link
+                      to={`/admin/items/${item.id}`}
+                      className="rounded bg-emerald-50 px-2 py-1 text-emerald-800 no-underline ring-1 ring-emerald-800 hover:bg-emerald-100"
+                    >
+                      Edit
+                    </Link>
+                    <form action="/admin/items/delete" method="post">
+                      <input type="hidden" name="itemId" value={item.id} />
+                      <button className="rounded bg-red-50 px-2 py-1 text-red-800 ring-1 ring-red-800 hover:bg-red-100">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </li>
+              );
+            })
+          ) : (
+            <p className="text-slate-500">No items added yet!</p>
+          )}
         </ul>
       </div>
     </div>

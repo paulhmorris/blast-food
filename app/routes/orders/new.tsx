@@ -41,7 +41,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function NewOrder() {
   const items = useLoaderData<LoaderData>();
-  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>();
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
 
   const addItem = (item: Item) => {
     if (!selectedItems) {
@@ -122,22 +122,23 @@ export default function NewOrder() {
         <div className="flex-[2_1_0%] pl-6">
           <label className="text-2xl font-bold">Available Items</label>
           <ul className="flex flex-wrap gap-4 overflow-y-scroll">
-            {items
-              .sort((a, b) => (a.id < b.id ? -1 : 1))
-              .map((item) => {
-                return (
-                  <li
-                    key={`item-${item.id}`}
-                    className={classNames(
-                      "flex basis-48 cursor-pointer select-none flex-col justify-between gap-2 rounded border-2 border-slate-800 bg-slate-50 px-2 py-4 font-medium text-slate-800"
-                    )}
-                    onClick={() => addItem(item)}
-                  >
-                    <p>{item.name}</p>
-                    <p>{formatCurrency(Number(item.price), 2)}</p>
-                  </li>
-                );
-              })}
+            {items.length > 0 &&
+              items
+                .sort((a, b) => (a.id < b.id ? -1 : 1))
+                .map((item) => {
+                  return (
+                    <li
+                      key={`item-${item.id}`}
+                      className={classNames(
+                        "flex basis-48 cursor-pointer select-none flex-col justify-between gap-2 rounded border-2 border-slate-800 bg-slate-50 px-2 py-4 font-medium text-slate-800"
+                      )}
+                      onClick={() => addItem(item)}
+                    >
+                      <p>{item.name}</p>
+                      <p>{formatCurrency(Number(item.price), 2)}</p>
+                    </li>
+                  );
+                })}
           </ul>
         </div>
       </main>
