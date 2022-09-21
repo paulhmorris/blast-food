@@ -44,7 +44,11 @@ export default function NewItem() {
   return (
     <div>
       <h1>New Item</h1>
-      <form method="post" className="mb-12 max-w-xs space-y-4">
+      <form
+        method="post"
+        action="/admin/items?index"
+        className="mb-12 max-w-xs space-y-4"
+      >
         <div className="flex flex-col">
           <label htmlFor="name">Name</label>
           <Input id="name" name="name" required />
