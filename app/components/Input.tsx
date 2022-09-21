@@ -1,12 +1,13 @@
-import type { ChangeEvent, ComponentPropsWithoutRef } from "react";
-import { useState } from "react";
+import { ChangeEvent, ComponentPropsWithoutRef, useRef, useState } from "react";
 
 export const Input = ({
   name,
   type = "text",
+  initialValue,
   ...props
-}: ComponentPropsWithoutRef<"input">) => {
-  const [value, setValue] = useState("");
+}: ComponentPropsWithoutRef<"input"> & { initialValue?: string }) => {
+  const [value, setValue] = useState(initialValue ?? "");
+  const ref = useRef(null);
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
 
@@ -18,6 +19,7 @@ export const Input = ({
       value={value}
       onChange={onChange}
       type={type}
+      ref={ref}
     />
   );
 };

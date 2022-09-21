@@ -37,7 +37,7 @@ export default function Orders() {
   const orders = useLoaderData<LoaderData>().orders;
 
   return (
-    <main className="pb-12">
+    <main className="max-w-3xl pb-12">
       <h1 className="mt-12 mb-6 text-rose-800">Open Orders</h1>
       <div className="flex px-4 font-bold text-slate-700">
         <p className="w-1/6">Guest Name</p>

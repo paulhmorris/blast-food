@@ -8,7 +8,7 @@ export type Order = {
 export type Item = {
   id: string;
   name: string;
-  price: string;
+  price: string | number;
 };
 
 export type OrderItem = {

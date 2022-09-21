@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-slate-800;
+  }
+
+  h1 {
+    @apply mb-1 text-3xl font-bold;
+  }
+
+  h2 {
+    @apply my-1 text-2xl font-semibold;
+  }
+
+  a {
+    @apply font-medium text-sky-700 underline decoration-2 underline-offset-4;
+  }
+
+  label {
+    @apply text-sm font-medium text-slate-700;
+  }
+}

@@ -2,7 +2,7 @@ import { Link, Outlet } from "@remix-run/react";
 
 export default function OrdersPage() {
   return (
-    <main className="flex-auto">
+    <main className="flex-auto p-6">
       <header>
         <Link to="/">
           <h1 className="text-base underline decoration-rose-800 decoration-2 underline-offset-4">

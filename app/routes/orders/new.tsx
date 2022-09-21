@@ -74,11 +74,13 @@ export default function NewOrder() {
               type="hidden"
               name="items"
               value={JSON.stringify(
-                selectedItems?.map(({ id, price, quantity }) => ({
-                  id,
-                  price,
-                  quantity,
-                }))
+                selectedItems
+                  ? selectedItems?.map(({ id, price, quantity }) => ({
+                      id,
+                      price,
+                      quantity,
+                    }))
+                  : ""
               )}
             />
 
@@ -102,7 +104,7 @@ export default function NewOrder() {
               selectedItems.map((item) => (
                 <li
                   key={item.id}
-                  className="relative flex justify-between rounded border-2 border-emerald-800 bg-emerald-50 py-3 pl-4 pr-12 font-medium text-emerald-800"
+                  className="relative flex justify-between whitespace-nowrap rounded border-2 border-emerald-800 bg-emerald-50 py-3 pl-4 pr-12 font-medium text-emerald-800"
                 >
                   <p>{item.name}</p>
                   <p className="ml-auto">
@@ -121,7 +123,7 @@ export default function NewOrder() {
           <label className="text-2xl font-bold">Available Items</label>
           <ul className="flex flex-wrap gap-4 overflow-y-scroll">
             {items
-              .sort((a, b) => (a.name < b.name ? -1 : 1))
+              .sort((a, b) => (a.id < b.id ? -1 : 1))
               .map((item) => {
                 return (
                   <li
