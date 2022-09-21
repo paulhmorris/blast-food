@@ -9,7 +9,10 @@ import { createItem, getItems } from "~/models/items.server";
 type LoaderData = Awaited<ReturnType<typeof getItems>>;
 export async function loader() {
   const items = await getItems();
-  return json<LoaderData>(items.sort((a, b) => (a.name < b.name ? -1 : 1)));
+  if (items.length > 0) {
+    return json<LoaderData>(items.sort((a, b) => (a.name < b.name ? -1 : 1)));
+  }
+  return json<LoaderData>(items);
 }
 
 export const action: ActionFunction = async ({ request }) => {
